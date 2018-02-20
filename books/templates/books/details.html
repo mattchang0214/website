@@ -1,0 +1,27 @@
+<td class="title">{{ book.title }}</td>
+<td class="edition">{{ book.edition }}</td>
+<td class="price">${{ book.price|floatformat:2 }}</td>
+<td class="details">
+  {% if book.details %}
+    {{ book.details }}
+  {% endif %}
+</td>
+<td class="date">{{ book.updated.date }}</td>
+<td class="action">
+  {% if book.seller == user %}
+    <a href="{% url 'books:update_book' book.id %}" class="btn btn-primary btn-sm" title="Edit Details">
+      <span class="glyphicon glyphicon-edit"></span>
+    </a>
+    <form action="{% url 'books:delete_book' book.id %}" method="post" style="display: inline;">
+      {% csrf_token %}
+      <input type="hidden" name="book_id" value="{{ book.id }}"/>
+      <button type="submit" class="btn btn-default btn-sm" title="Delete Post">
+        <span class="glyphicon glyphicon-trash"></span>
+      </button>
+    </form>
+  {% else %}
+    <a href="#" class="btn btn-default btn-sm" title="Save Post">
+      <span class="glyphicon glyphicon-heart-empty"></span>
+    </a>
+  {% endif %}
+</td>

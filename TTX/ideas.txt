@@ -1,0 +1,17 @@
+-Favorite function (jQuery)
+-Sort by price/oldest/newest button, default newest (jQuery)
+-Pagination (jQuery)
+-Advanced search
+-Make home page better
+    -Present the features of the site (like Bucky's Viberr)
+-Record money user earns and display table with venmo_username (for superusers)
+-Superuser sold button, delete record, send automatic email
+
+Done:
+-Add optional additional details field to Book model
+-Log the user in after registering
+-Prevent users from editing posts that are not theirs
+
+Possible but unlikely:
+-Email confirmation code after registering before logging them in?
+-Message seller functionality?

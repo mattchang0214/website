@@ -1,0 +1,46 @@
+{% extends 'books/base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block body %}
+<div class="container-fluid transparent site-text">
+  {% if results %}
+    {% if query %}
+      <h2 class="site-text">Results for "{{ query }}":</h2>
+    {% endif %}
+    <div class="table-responsive">
+      <table class="table table-striped" style="font-size: 16px;">
+        <thead>
+          <tr>
+            <th class="title">Title</th>
+            <th class="edition">Edition</th>
+            <th class="price">Price</th>
+            <th class="details">Details</th>
+            <th class="date">Date Posted</th>
+            <th class="action">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for book in results %}
+            <tr>
+              {% include 'books/details.html' %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% if not results %}
+        <br>
+        <h4 class="text align-center">You have no items for sale.</h4>
+        <h4 class="align-center"><a href="{% url 'books:create_book' %}" class="btn btn-default btn-sm">Sell your textbooks!</a></h4>
+      {% endif %}
+    </div>
+  {% else %}
+    {% if query %}
+      <h2>Sorry, no matches found for "{{ query }}"</h2>
+    {% else %}
+      <h2>There are no books for sale right now... :(</h2>
+      <a href="{% url 'books:create_book' %}">Sell Some Books!</a>
+    {% endif %}
+  {% endif %}
+</div>
+{% endblock %}

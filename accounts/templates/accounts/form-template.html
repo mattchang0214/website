@@ -1,0 +1,54 @@
+{% if form %}
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+  {% endif %}
+
+  {% for field in form %}
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        {% if field.errors %}
+          <div class="alert alert-danger">
+            {% for error in field.errors %}
+              <p>{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% if not form.errors and field.help_text %}
+          <div class="alert alert-info fade in">
+            {{ field.help_text|safe }}
+          </div>
+        {% endif %}
+      </div>
+      <label class="control-label col-sm-3">{{ field.label_tag }}</label>
+      <div class="col-sm-2">{{ field }}</div>
+    </div>
+  {% endfor %}
+
+{% elif form_list %}
+  {% for form in form_list %}
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    {% for field in form %}
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          {% if field.errors %}
+            <div class="alert alert-danger">
+              {% for error in field.errors %}
+                <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+          {% if not form.errors and field.help_text %}
+            <div class="alert alert-info fade in">
+              {{ field.help_text|safe }}
+            </div>
+          {% endif %}
+        </div>
+        <label class="control-label col-sm-4">{{ field.label_tag }}</label>
+        <div class="col-sm-2">{{ field }}</div>
+      </div>
+    {% endfor %}
+  {% endfor %}
+{% endif %}

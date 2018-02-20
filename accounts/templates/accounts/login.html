@@ -1,0 +1,35 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}TTX Login{% endblock %}
+
+{% block body %}
+<div class="container-fluid site-text" style="font-size: 16px;">
+  <div class="row">
+    <div class="col-sm-12 col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+
+          {% if error_message %}
+            <div class="alert alert-danger">{{ error_message }}</div>
+          {% endif %}
+          <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% include 'accounts/form-template.html' %}
+            <div class="form-group">
+              <div class="col-sm-offset-3 col-sm-10">
+                <button type="submit" class="btn btn-success">Login</button>&emsp;
+                <a href="{% url 'accounts:password_reset' %}">Forgot Password?</a>
+              </div>
+            </div>
+            <div class="col-sm-offset-3 col-sm-10">
+              New User? Register Here&ensp;
+              <a href="{% url 'accounts:register' %}" class="btn btn-danger">Register</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

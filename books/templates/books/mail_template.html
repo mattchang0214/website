@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <div class="jumbotron">
+    <h1><img src="http://www.powells.com/Portals/0/favicon.ico"><strong>&nbsp;Tufts Textbook Xchange</strong></h1>
+  </div>
+  <h3>Hi {{ book.seller.first_name }},</h3>
+  <h4>Your item {{ book.title }} has just been sold for ${{ book.price|floatformat:2 }}!</h4>
+  <p>
+    You will receive a total payment of ${{ userprofile.total|floatformat:2 }}
+    via Venmo at the end of the day.
+  </p>
+  <br>
+  <br>
+  <p>Thanks,</p>
+  <p>The TTX Team</p>
+</body>
+</html>

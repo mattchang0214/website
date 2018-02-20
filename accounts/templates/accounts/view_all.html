@@ -1,0 +1,35 @@
+{% extends 'books/base.html' %}
+
+{% block title %}I Owe These Peeps Money{% endblock %}
+{% block my_active %}active{% endblock %}
+
+{% block body %}
+<div class="container-fluid transparent site-text">
+  <br>
+  <br>
+  <br>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="">Name</th>
+          <th class="">Venmo Username</th>
+          <th class="">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for seller in list %}
+          <tr>
+            {% include 'accounts/details.html' %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% if not list %}
+      <br>
+      <h4 class="text align-center">You don't owe anyone money.</h4>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

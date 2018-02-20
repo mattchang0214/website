@@ -1,0 +1,28 @@
+{% extends 'books/base.html' %}
+
+{% block body %}
+<div class="container transparent site-text" style="font-size: 16px;">
+  <h1>My Profile</h1>
+  {% comment %}
+  {% if user.userprofile.image %}
+    <img src="{{ user.userprofile.image.url }}">
+  {% else %}
+    <img src="/media/profile_pic/default.png">
+  {% endif %}
+  {% endcomment %}
+  {% if updated %}
+  <div class="alert alert-success alert-dismissible fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Your profile was updated successfully!
+  </div>
+  {% endif %}
+  <p>Username: {{ user.username }}</p>
+  <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+  <p>Email: {{ user.email }}</p>
+  <p>Phone: {{ user.userprofile.phone }}</p>
+  <br>
+  <a href="{% url 'accounts:edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+  <br>
+  &nbsp;
+</div>
+{% endblock %}

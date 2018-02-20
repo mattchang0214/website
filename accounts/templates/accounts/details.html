@@ -1,0 +1,15 @@
+<td class="">{{ seller.user.first_name }} {{ seller.user.last_name }}</td>
+<td class="">{{ seller.venmo_username }}</td>
+<td class="">${{ seller.total|floatformat:2 }}</td>
+<td class="action">
+  {% block comment %}
+    Resets user total to zero
+  {% endcomment %}
+  <form action="{% url 'books:delete_book' book.id %}" method="post" style="display: inline;">
+    {% csrf_token %}
+    <input type="hidden" name="book_id" value="{{ book.id }}"/>
+    <button type="submit" class="btn btn-default btn-sm" title="Delete Post">
+      <span class="glyphicon glyphicon-trash"></span>
+    </button>
+  </form>
+</td>

@@ -1,0 +1,49 @@
+{% extends 'books/base.html' %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block body %}
+<div class="container-fluid site-text" style="font-size: 16px;">
+  <div class="row">
+    <div class="col-sm-12 col-md-7">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>Edit User Information</h2>
+          <br>
+          {% if error_message %}
+            <div class="alert alert-danger">{{ error_message }}</div>
+          {% endif %}
+          <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for form in form_list %}
+              {% for field in form %}
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <span class="text-danger small">{{ field.errors }}</span>
+                  </div>
+                  <label class="control-label col-sm-3">{{ field.label_tag }}</label>
+                  <div class="col-sm-2">
+                    {% if field.label != 'Password' %}
+                      {{ field }}
+                    {% else %}
+                      <a href="{% url 'accounts:password_change' %}" class="btn btn-primary btn-sm">Change Password</a>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+            {% endfor %}
+            <br>
+            <div class="form-group">
+              <div class="col-sm-offset-3 col-sm-10">
+                <button type="submit" class="btn btn-success">Confirm</button>&emsp;&emsp;&emsp;
+                <a href="{% url 'accounts:view_profile' %}" class="btn btn-default">Back</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

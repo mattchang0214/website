@@ -1,0 +1,39 @@
+{% extends 'books/base.html' %}
+
+{% block title %}My Books{% endblock %}
+{% block my_active %}active{% endblock %}
+
+{% block body %}
+<div class="container-fluid transparent">
+  <br>
+  <br>
+  <br>
+  <div class="table-responsive site-text" style="font-size: 16px;">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="title">Title</th>
+          <th class="edition">Edition</th>
+          <th class="price">Price</th>
+          <th class="details">Details</th>
+          <th class="date">Date Posted</th>
+          <th class="action">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for book in book_list %}
+          <tr>
+            {% include 'books/details.html' %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% if not book_list %}
+      <br>
+      <h4 class="text align-center">You have no items for sale.</h4>
+      <h4 class="align-center"><a href="{% url 'books:create_book' %}" class="btn btn-default btn-sm">Sell your textbooks!</a></h4>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
